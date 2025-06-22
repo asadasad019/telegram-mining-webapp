@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التعدين</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0e1e2a;
+      color: white;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: #1a2d40;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .content {
+      padding: 20px;
+    }
+    .tab-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a2d40;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #333;
+    }
+    .tab-bar button {
+      flex: 1;
+      padding: 15px 0;
+      background: none;
+      color: white;
+      border: none;
+      font-size: 14px;
+    }
+    .tab-bar button.active {
+      background: #273d52;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .balance {
+      font-size: 24px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .claim-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 25px;
+      font-size: 16px;
+      background: #00c853;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>لوحة التعدين</header>
+
+  <div class="content">
+    <div id="miner" class="section active">
+      <div class="balance">💰 رصيدك: <span id="balance">30240.00 SOT</span></div>
+      <div class="balance">⚡️ سرعة التعدين: 1260 SOT/H</div>
+      <button class="claim-button">المطالبة بالأرباح</button>
+    </div>
+
+    <div id="packages" class="section">
+      <h3>📦 الباقات المتوفرة</h3>
+      <ul>
+        <li>باقة 15 USDT</li>
+        <li>باقة 99 USDT</li>
+        <li>باقة 299 USDT</li>
+        <li>باقة 999 USDT</li>
+      </ul>
+    </div>
+
+    <div id="team" class="section">
+      <h3>👥 فريقك</h3>
+      <p>عدد الإحالات: 0</p>
+      <p>أرباح الفريق: 0 USDT</p>
+    </div>
+
+    <div id="wallet" class="section">
+      <h3>💸 السحب والإيداع</h3>
+      <p>عنوان TRC20:</p>
+      <code>TJj1Mb77hoSC5PbPiT4pc9oqMzvNS1V5Q3</code>
+      <p>عنوان BEP20:</p>
+      <code>0xb2d1e9ec71199a32551b8d5dd1826e00c1e2d9a4</code>
+      <br><br>
+      <button class="claim-button">طلب سحب</button>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <button onclick="showSection('miner')" class="active">⛏️ التعدين</button>
+    <button onclick="showSection('packages')">💼 باقات</button>
+    <button onclick="showSection('team')">👥 الفريق</button>
+    <button onclick="showSection('wallet')">💸 المحفظة</button>
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      const btn = Array.from(document.querySelectorAll('.tab-bar button')).find(b => b.textContent.includes(id === 'miner' ? '⛏️' : id === 'packages' ? '💼' : id === 'team' ? '👥' : '💸'));
+      if (btn) btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
